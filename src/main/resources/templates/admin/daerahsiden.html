@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thmelef/layout"
+      layout:decorate="_layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>Student Web App</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+    <input type="hidden" th:field="*{id}">
+    <img src="" height="100px" width="100px"  th:src="@{${'/gambar/' + daerahDtos.gambar}}">
+    <h1 th:text="${daerahDtos.namaDaerah}"></h1>
+    <h2 th:text="${daerahDtos.deskripsi}"></h2>
+<!--    <ul class="nav nav-pills"> 
+                    <li class="nav-item"sec:authorize="hasRole('ADMIN')" ><a th:href="@{/admin/anggotas/add/satu/{id}(id=${dareahDtos.id})}" class="nav-link">Create Anggota</a></li>
+                </ul>-->
+    <ul class="nav nav-pills">
+                    <li class="nav-item"><a th:href="@{/admin/daerahs/identitas/{id}(id=${daerahDtos.id})}" class="nav-link active" aria-current="page">anggota</a></li>
+                    <li class="nav-item"><a th:href="@{/admin/daerahs/kegiatan/{id}(id=${daerahDtos.id})}" class="nav-link">kegiatan</a></li>
+                    <!--<li class="nav-item"sec:authorize="hasRole('ADMIN')" ><a th:href="@{/admin/anggotas/add/satu/{id}(id=${daerahDtos.id})}" class="nav-link">Create Anggota</a></li>-->
+    </ul>   
+    <table class="table table-bordered table-striped">
+      <thead>
+        <th styles="width:10%"> NO </th>
+<!--        <th styles="width:20%"> Nama anggota </th>-->
+        <th styles="width:20%"> firstname </th>
+        <th styles="width:10%"> lastname </th>
+        <th styles="width:10%"> Kelas </th>
+<!--        <th styles="width:20%"> action </th>-->
+      </thead>
+        <tbody>
+            <tr th:each="stdDo,index : ${daerahDtos.anggota}">
+                <td th:text="${index.count}">No</td>
+                <td th:text="${stdDo.firstName}">first-name</td>
+                <td th:text="${stdDo.lastName}">last-name</td>
+                <td th:text="${stdDo.kelas}">last-name</td>
+<!--                <td>
+                    <span th:each="anggota : ${stdDo.anggota}">
+                        <span th:text="${anggota.firstName} + ' ' + ${anggota.lastName}"></span>
+                        <br/>
+                    </span>
+                </td>
+                <td>
+                    <span th:each="kegiatan, iterStat : ${stdDo.kegiatan}">
+                        <span th:text="${iterStat.count} + '. ' + ${kegiatan.namaKegiatan}"></span>
+                        <br/>
+                    </span>
+                </td>-->
+<!--                <td>    
+                    <a onclick="alert(`Anda akan mengupdate data`)" th:href="@{/admin/daerahs/update/{id}(id=${stdDo.id})}" type="submit" class="btn btn-primary">Update</a>
+                    <a onclick="alert(`Anda akan menghapus data`)" th:href="@{/admin/daerahs/delete/{id}(id=${stdDo.id})}" type="submit" class="btn btn-danger">Delete</a>
+                </td>-->
+            </tr>
+        </tbody>
+    </table>
+        </div>
+    </body>
+</html>

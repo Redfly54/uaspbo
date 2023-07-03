@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thmelef/layout"
+      layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Anggota Form</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <div class="row col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Add Anggota Student</h2>
+          </div>
+          <div class="card-body">
+            <form role="form" method="post" th:action="@{/admin/anggotas/add/satu}" th:object="${anggotaDto,daerahDto}">
+                <div class="mb-3">
+                <label class="form-label">Fist Name</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Nama Daerah" th:field="*{firstName}">
+                <p th:if="${#fields.hasErrors('firstName')}" class="text-danger"
+                   th:errors="*{firstName}"></p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Deskripsi" th:field="*{lastName}">
+                <p th:if="${#fields.hasErrors('lastName')}" class="text-danger"
+                   th:errors="*{lastName}"></p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Kelas</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Deskripsi" th:field="*{kelas}">
+                <p th:if="${#fields.hasErrors('kelas')}" class="text-danger"
+                   th:errors="*{kelas}"></p>
+              </div> 
+<!--              <div class="mb-3">
+                <label class="form-label">Daerah</label>
+                <select th:field="*{daerah}" class="form-control" multiple="multiple" required>
+                                <th:block th:each="cat : ${listDaerahs}">
+                                    <option th:text="${cat.namaDaerah}" th:value="${cat.id}">
+                                </th:block>
+                 </select>
+                <p th:if="${#fields.hasErrors('course')}" class="text-danger"
+                   th:errors="*{course}"></p>
+              </div>-->
+              <input type="hidden" th:name="daerahId" th:value="${daerahDto.id}">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
