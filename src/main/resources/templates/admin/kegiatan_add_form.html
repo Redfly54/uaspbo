@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thmelef/layout"
+      layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Kegiatan Form</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <div class="row col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Add Kegiatan Student</h2>
+          </div>
+          <div class="card-body">
+            <form role="form" method="post" th:action="@{/admin/kegiatans/add}" th:object="${kegiatanDto}">
+                <div class="mb-3">
+                <label class="form-label">Nama Kegiatan</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Nama Daerah" th:field="*{namaKegiatan}">
+                <p th:if="${#fields.hasErrors('namaKegiatan')}" class="text-danger"
+                   th:errors="*{namaKegiatan}"></p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Deskripsi Kegiatan</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Deskripsi" th:field="*{deskripsiKegiatan}">
+                <p th:if="${#fields.hasErrors('deskripsiKegiatan')}" class="text-danger"
+                   th:errors="*{deskripsiKegiatan}"></p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Daerah</label>
+                <select th:field="*{daerah}" class="form-control" multiple="multiple" required>
+                                <th:block th:each="cat : ${listDaerahs}">
+                                    <option th:text="${cat.namaDaerah}" th:value="${cat.id}">
+                                </th:block>
+                 </select>
+<!--                <p th:if="${#fields.hasErrors('course')}" class="text-danger"
+                   th:errors="*{course}"></p>-->
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

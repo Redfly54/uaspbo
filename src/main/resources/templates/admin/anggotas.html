@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thmelef/layout"
+      layout:decorate="_layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>Student Web App</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <table class="table table-bordered table-striped">
+      <thead>
+        <th styles="width:10%"> NO </th>
+        <th styles="width:20%"> First Name </th>
+        <th styles="width:20%"> Last Name </th>
+        <th styles="width:10%"> Kelas </th>
+        <th styles="width:15%"> Daerah </th>
+        <th styles="width:20%"> action </th>
+      </thead>
+        <tbody>
+            <tr th:each="stdDo,index : ${anggotaDtos}">
+                <td th:text="${index.count}">No</td>
+                <td th:text="${stdDo.firstName}">first-name</td>
+                <td th:text="${stdDo.lastName}">last-name</td>
+                <td th:text="${stdDo.kelas}">kelas</td>
+                <td th:text="${stdDo.daerah}">daerah</td>
+                <td>    
+                    <a onclick="alert(`Anda akan mengupdate data`)" th:href="@{/admin/anggotas/update/{id}(id=${stdDo.id})}" type="submit" class="btn btn-primary">Update</a>
+                    <a onclick="alert(`Anda akan menghapus data`)" th:href="@{/admin/anggotas/delete/{id}(id=${stdDo.id})}" type="submit" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+    </body>
+</html>

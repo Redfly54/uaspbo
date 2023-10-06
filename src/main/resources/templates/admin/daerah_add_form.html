@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thmelef/layout"
+      layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Daerah Form</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="container">
+      <div class="row col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Add Daerah Student</h2>
+          </div>
+          <div class="card-body">
+            <form role="form" method="post" th:action="@{/admin/daerahs/add}" th:object="${daerahDto}" enctype="multipart/form-data">
+                <div class="mb-3">
+                <label class="form-label">Nama Daerah</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Nama Daerah" th:field="*{namaDaerah}">
+                <p th:if="${#fields.hasErrors('namaDaerah')}" class="text-danger"
+                   th:errors="*{namaDaerah}"></p>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <input type="text" class="form-control"
+                       placeholder="Enter Deskripsi" th:field="*{deskripsi}">
+                <p th:if="${#fields.hasErrors('deskripsi')}" class="text-danger"
+                   th:errors="*{deskripsi}"></p>
+              </div>
+               <div class="col-sm-5">
+                <p>Logo</p>
+                <div class="custom-file">
+                  <input type="file" name="gambarFile" accept="image/jpeg, image/png, image/jpg" id="gambarFile" onchange="previewImage(event)">
+                </div>
+                <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+            </div>
+<!--              <div class="mb-3">
+                <label class="form-label">Courses</label>
+                <select th:field="*{anggota}" class="form-control" multiple="multiple" required>
+                                <th:block th:each="cat : ${listAnggotas}">
+                                    <option th:text="${cat.firstName}" th:value="${cat.id}">
+                                </th:block>
+                 </select>-->
+<!--                <p th:if="${#fields.hasErrors('course')}" class="text-danger"
+                   th:errors="*{course}"></p>-->
+              <!--</div>-->
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
